@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="css/output.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>SuperFollow</title>
+    <style>
+      .accordion-content {
+        display: none;
+      }
+
+      .accordion-open {
+        display: block;
+      }
+    </style>
+
+    <style type="text/tailwindcss">
+      @layer utilities {
+        html,
+        body {
+          @apply scroll-smooth font-['Inter'];
+        }
+
+        .title {
+          @apply font-['Briston'] text-[42px] sm:text-[52px] md:text-[60px];
+        }
+
+        .subtitle {
+          @apply text-[18px] font-[800];
+        }
+
+        .faq-button-style {
+          @apply min-w-[40px] min-h-[40px] rounded-full text-dark bg-white border border-gray-300 flex items-center justify-center;
+        }
+
+        [x-cloak] {
+          display: none !important;
+        }
+
+        .container {
+          @apply p-5 lg:max-w-5xl xl:max-w-5xl 2xl:w-7xl mx-auto;
+        }
+
+        .modal-wrapper {
+          @apply overflow-hidden z-[500] overflow-y-auto fixed top-0 h-screen w-full left-0 bg-black bg-opacity-70;
+        }
+
+        .modal-inner-wrapper {
+          @apply flex flex-col items-center sticky top-0 z-[200] justify-center min-h-[100vh] w-full p-5;
+        }
+
+        .modal-body {
+          @apply rounded-xl bg-white p-3 relative z-[300];
+        }
+      }
+    </style>
+
+    <!-- <script>
+      tailwind.config = {
+        theme: {
+          extend: {},
+        },
+      };
+    </script> -->
+  </head>
+
+  <body class="text-gray-800 box-border">
+    <!-- Navbar -->
+    <section class="bg-white text-gray-800 fixed top-0 inset-x-0 z-30">
+      <nav
+        class="p-4 max-w-screen-2xl mx-auto flex justify-between items-center"
+      >
+        <!-- Logo -->
+        <div class="logo flex items-center">
+          <div class="bg-primary h-10 w-20"></div>
+          <!-- Links -->
+          <div
+            class="nav-links hidden md:flex justify-between items-center gap-x-4 p-2"
+          >
+            <ul
+              class="flex justify-between gap-x-5 font-sans leading-normal text-gray-800 text-sm"
+            >
+              <li class="font-bold">
+                <a href="#">Home</a>
+              </li>
+              <li>
+                <a href="#feature">Features</a>
+              </li>
+              <li><a href="#how-it-works">How it works</a></li>
+              <li><a href="#faqs">FAQs</a></li>
+              <li><a href="#contact">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- Mobile menu button -->
+        <button id="menu-btn" class="block md:hidden p-2 focus:outline-none">
+          <i class="fas fa-bars fa-lg"></i>
+          <!-- Menu icon -->
+          <i class="fas fa-times fa-lg"></i>
+        </button>
+        <!-- Buttons -->
+        <div
+          class="download-btn hidden md:flex justify-between items-center gap-x-2 text-secondary"
+        >
+          <a href="#">
+            <img src="/images/google-play.svg" alt="" class="w-28 h-auto" />
+          </a>
+
+          <a href="#">
+            <img src="/images/apple-store.svg" alt="" class="w-28 h-auto" />
+          </a>
+        </div>
+      </nav>
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="hidden md:hidden px-6 mb-4">
+        <ul class="bg-white flex flex-col gap-y-4">
+          <li class="shadow-sm">Home</li>
+          <li class="shadow-sm">Features</li>
+          <li class="shadow-sm">How it works</li>
+          <li class="shadow-sm">FAQs</li>
+          <li class="shadow-sm">Contact Us</li>
+        </ul>
+      </div>
+    </section>
+
+    <section
+      class="bg-primary relative min-h-[50vh] overflow-hidden"
+      style="min-height: 50vh"
+    >
+      <section class="container z-20">
+        <section class="space-y-2 my-16 md:w-1/2">
+          <div class="hero-lg-txt">
+            <h1 class="text-4xl md:text-6xl font-medium text-gray-800">
+              Elevate Your Social Presence with SuperFollow!
+            </h1>
+          </div>
+          <div class="hero-paragraph text-gray-500 max-w-fit text-wrap">
+            Transform ordinary moments into extraordinary milestones.
+            SuperFollow empowers influencers, creators, and social enthusiasts
+            to skyrocket their online presence.
+          </div>
+        </section>
+      </section>
+    </section>
+
+    <section class="py-16 container">
+      <section class="container space-y-5">
+        <p>
+          Welcome to Passypay, an app that provides easy and convenient access
+          to various services including bills and utility payment, gift card
+          transactions, and cryptocurrency trading. By using Passypay, you agree
+          to be bound by the following terms and conditions.
+        </p>
+
+        <section class="space-y-3">
+          <h2 class="section-title text-primary">INTRODUCTION</h2>
+          <p>The following definitions relate to these Terms of Use:</p>
+          <ul class="md:pl-5 space-y-3">
+            <li>
+              1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
+              interdum mauris eget dolor malesuada, vitae hendrerit mi mattis.
+              Duis posuere nisi et commodo tempus. Aenean bibendum efficitur
+              ante, ut commodo elit mollis vitae. Fusce vitae mauris ut orci
+              consequat eleifend. Sed luctus id elit vitae rhoncus. Aliquam eu
+              odio sed lacus malesuada imperdiet. Nullam pharetra posuere
+              tellus, non efficitur dolor interdum non.
+            </li>
+            <li>
+              2. Praesent sit amet accumsan orci. Vestibulum ultricies augue in
+              leo efficitur, sed faucibus mi lacinia. Nullam bibendum congue
+              sem, sed commodo nulla rhoncus ut. Nullam ut dapibus quam, nec
+              laoreet mauris. Sed sed ante arcu. Praesent vestibulum diam ut
+              nibh ultrices, eu lobortis lorem porttitor. Praesent sollicitudin
+              urna ut libero elementum gravida. Sed ullamcorper ex vitae justo
+              pretium, eget semper velit facilisis. Sed in est nulla. Aenean
+              scelerisque eget urna eget iaculis.
+            </li>
+            <li>
+              3. Suspendisse quis risus neque. Nam id erat vel sapien pulvinar
+              ultricies. Integer elementum quam vel massa malesuada, vel finibus
+              ex consectetur. Donec vel enim id elit dapibus ornare eu at ante.
+              Sed imperdiet, felis vitae sollicitudin dictum, odio lacus
+              faucibus justo, a mollis odio est vel est. Nam aliquam magna sit
+              amet quam convallis lacinia. Etiam quis purus euismod, convallis
+              sapien sed, feugiat mauris. Nullam vel massa sem. Nunc quis justo
+              arcu. Sed ac est a libero tincidunt blandit at ac dolor. Aliquam
+              sit amet orci nec quam dictum iaculis.
+            </li>
+            <li>
+              4. Sed eu odio lacinia, finibus sem a, mollis odio. Sed rhoncus
+              tristique nunc, ut bibendum tellus convallis vel. Morbi euismod in
+              elit ut dapibus. Sed quis metus justo. Pellentesque id metus ut
+              augue gravida elementum quis ut velit. Vivamus in feugiat mauris,
+              at vulputate quam. Donec non nisl eu nisi dapibus blandit. Ut sed
+              fringilla sapien, in blandit sapien. Phasellus ac enim augue. Sed
+              molestie dolor vitae risus pharetra aliquam.
+            </li>
+            <li>
+              5. Nunc ullamcorper lorem vel augue sagittis, vitae laoreet risus
+              pretium. Duis luctus mi vel sem pellentesque consectetur. Integer
+              id risus nisl. Nunc bibendum urna nec lacus ullamcorper, sit amet
+              tincidunt ex volutpat. Aliquam in massa urna. Nullam at nibh nec
+              tortor dignissim tincidunt. Nam euismod blandit quam. Donec quis
+              pretium eros. Quisque vel bibendum tellus. Aenean eget felis quam.
+              Sed posuere commodo commodo. Nulla facilisi. Sed varius nunc at
+              turpis malesuada, in commodo lorem bibendum. Ut pretium, ante vel
+              fermentum volutpat, mi enim dignissim lectus, at faucibus enim
+              sapien non massa. Cras eget lectus a magna facilisis sagittis.
+              Vivamus faucibus, lectus vitae imperdiet pharetra, nibh nibh
+              tristique nibh, id suscipit nisl elit ut ipsum.
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="section-title text-primary">GENERAL</h2>
+          <ul class="md:pl-5 space-y-3">
+            <li>
+              1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
+              interdum mauris eget dolor malesuada, vitae hendrerit mi mattis.
+              Duis posuere nisi et commodo tempus. Aenean bibendum efficitur
+              ante, ut commodo elit mollis vitae. Fusce vitae mauris ut orci
+              consequat eleifend. Sed luctus id elit vitae rhoncus. Aliquam eu
+              odio sed lacus malesuada imperdiet. Nullam pharetra posuere
+              tellus, non efficitur dolor interdum non.
+            </li>
+            <li>
+              2. Praesent sit amet accumsan orci. Vestibulum ultricies augue in
+              leo efficitur, sed faucibus mi lacinia. Nullam bibendum congue
+              sem, sed commodo nulla rhoncus ut. Nullam ut dapibus quam, nec
+              laoreet mauris. Sed sed ante arcu. Praesent vestibulum diam ut
+              nibh ultrices, eu lobortis lorem porttitor. Praesent sollicitudin
+              urna ut libero elementum gravida. Sed ullamcorper ex vitae justo
+              pretium, eget semper velit facilisis. Sed in est nulla. Aenean
+              scelerisque eget urna eget iaculis.
+            </li>
+            <li>
+              3. Suspendisse quis risus neque. Nam id erat vel sapien pulvinar
+              ultricies. Integer elementum quam vel massa malesuada, vel finibus
+              ex consectetur. Donec vel enim id elit dapibus ornare eu at ante.
+              Sed imperdiet, felis vitae sollicitudin dictum, odio lacus
+              faucibus justo, a mollis odio est vel est. Nam aliquam magna sit
+              amet quam convallis lacinia. Etiam quis purus euismod, convallis
+              sapien sed, feugiat mauris. Nullam vel massa sem. Nunc quis justo
+              arcu. Sed ac est a libero tincidunt blandit at ac dolor. Aliquam
+              sit amet orci nec quam dictum iaculis.
+            </li>
+            <li>
+              4. Sed eu odio lacinia, finibus sem a, mollis odio. Sed rhoncus
+              tristique nunc, ut bibendum tellus convallis vel. Morbi euismod in
+              elit ut dapibus. Sed quis metus justo. Pellentesque id metus ut
+              augue gravida elementum quis ut velit. Vivamus in feugiat mauris,
+              at vulputate quam. Donec non nisl eu nisi dapibus blandit. Ut sed
+              fringilla sapien, in blandit sapien. Phasellus ac enim augue. Sed
+              molestie dolor vitae risus pharetra aliquam.
+            </li>
+            <li>
+              5. Nunc ullamcorper lorem vel augue sagittis, vitae laoreet risus
+              pretium. Duis luctus mi vel sem pellentesque consectetur. Integer
+              id risus nisl. Nunc bibendum urna nec lacus ullamcorper, sit amet
+              tincidunt ex volutpat. Aliquam in massa urna. Nullam at nibh nec
+              tortor dignissim tincidunt. Nam euismod blandit quam. Donec quis
+              pretium eros. Quisque vel bibendum tellus. Aenean eget felis quam.
+              Sed posuere commodo commodo. Nulla facilisi. Sed varius nunc at
+              turpis malesuada, in commodo lorem bibendum. Ut pretium, ante vel
+              fermentum volutpat, mi enim dignissim lectus, at faucibus enim
+              sapien non massa. Cras eget lectus a magna facilisis sagittis.
+              Vivamus faucibus, lectus vitae imperdiet pharetra, nibh nibh
+              tristique nibh, id suscipit nisl elit ut ipsum.
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="section-title text-primary">
+            DEFINITION AND INTERPRETATION
+          </h2>
+          <ul class="md:pl-5 space-y-3">
+            <li>
+              1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
+              interdum mauris eget dolor malesuada, vitae hendrerit mi mattis.
+              Duis posuere nisi et commodo tempus. Aenean bibendum efficitur
+              ante, ut commodo elit mollis vitae. Fusce vitae mauris ut orci
+              consequat eleifend. Sed luctus id elit vitae rhoncus. Aliquam eu
+              odio sed lacus malesuada imperdiet. Nullam pharetra posuere
+              tellus, non efficitur dolor interdum non.
+            </li>
+            <li>
+              2. Praesent sit amet accumsan orci. Vestibulum ultricies augue in
+              leo efficitur, sed faucibus mi lacinia. Nullam bibendum congue
+              sem, sed commodo nulla rhoncus ut. Nullam ut dapibus quam, nec
+              laoreet mauris. Sed sed ante arcu. Praesent vestibulum diam ut
+              nibh ultrices, eu lobortis lorem porttitor. Praesent sollicitudin
+              urna ut libero elementum gravida. Sed ullamcorper ex vitae justo
+              pretium, eget semper velit facilisis. Sed in est nulla. Aenean
+              scelerisque eget urna eget iaculis.
+            </li>
+            <li>
+              3. Suspendisse quis risus neque. Nam id erat vel sapien pulvinar
+              ultricies. Integer elementum quam vel massa malesuada, vel finibus
+              ex consectetur. Donec vel enim id elit dapibus ornare eu at ante.
+              Sed imperdiet, felis vitae sollicitudin dictum, odio lacus
+              faucibus justo, a mollis odio est vel est. Nam aliquam magna sit
+              amet quam convallis lacinia. Etiam quis purus euismod, convallis
+              sapien sed, feugiat mauris. Nullam vel massa sem. Nunc quis justo
+              arcu. Sed ac est a libero tincidunt blandit at ac dolor. Aliquam
+              sit amet orci nec quam dictum iaculis.
+            </li>
+            <li>
+              4. Sed eu odio lacinia, finibus sem a, mollis odio. Sed rhoncus
+              tristique nunc, ut bibendum tellus convallis vel. Morbi euismod in
+              elit ut dapibus. Sed quis metus justo. Pellentesque id metus ut
+              augue gravida elementum quis ut velit. Vivamus in feugiat mauris,
+              at vulputate quam. Donec non nisl eu nisi dapibus blandit. Ut sed
+              fringilla sapien, in blandit sapien. Phasellus ac enim augue. Sed
+              molestie dolor vitae risus pharetra aliquam.
+            </li>
+            <li>
+              5. Nunc ullamcorper lorem vel augue sagittis, vitae laoreet risus
+              pretium. Duis luctus mi vel sem pellentesque consectetur. Integer
+              id risus nisl. Nunc bibendum urna nec lacus ullamcorper, sit amet
+              tincidunt ex volutpat. Aliquam in massa urna. Nullam at nibh nec
+              tortor dignissim tincidunt. Nam euismod blandit quam. Donec quis
+              pretium eros. Quisque vel bibendum tellus. Aenean eget felis quam.
+              Sed posuere commodo commodo. Nulla facilisi. Sed varius nunc at
+              turpis malesuada, in commodo lorem bibendum. Ut pretium, ante vel
+              fermentum volutpat, mi enim dignissim lectus, at faucibus enim
+              sapien non massa. Cras eget lectus a magna facilisis sagittis.
+              Vivamus faucibus, lectus vitae imperdiet pharetra, nibh nibh
+              tristique nibh, id suscipit nisl elit ut ipsum.
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="section-title text-primary">THE SERVICES</h2>
+          <ul class="md:pl-5 space-y-3">
+            <li>
+              1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
+              interdum mauris eget dolor malesuada, vitae hendrerit mi mattis.
+              Duis posuere nisi et commodo tempus. Aenean bibendum efficitur
+              ante, ut commodo elit mollis vitae. Fusce vitae mauris ut orci
+              consequat eleifend. Sed luctus id elit vitae rhoncus. Aliquam eu
+              odio sed lacus malesuada imperdiet. Nullam pharetra posuere
+              tellus, non efficitur dolor interdum non.
+            </li>
+            <li>
+              2. Praesent sit amet accumsan orci. Vestibulum ultricies augue in
+              leo efficitur, sed faucibus mi lacinia. Nullam bibendum congue
+              sem, sed commodo nulla rhoncus ut. Nullam ut dapibus quam, nec
+              laoreet mauris. Sed sed ante arcu. Praesent vestibulum diam ut
+              nibh ultrices, eu lobortis lorem porttitor. Praesent sollicitudin
+              urna ut libero elementum gravida. Sed ullamcorper ex vitae justo
+              pretium, eget semper velit facilisis. Sed in est nulla. Aenean
+              scelerisque eget urna eget iaculis.
+            </li>
+            <li>
+              3. Suspendisse quis risus neque. Nam id erat vel sapien pulvinar
+              ultricies. Integer elementum quam vel massa malesuada, vel finibus
+              ex consectetur. Donec vel enim id elit dapibus ornare eu at ante.
+              Sed imperdiet, felis vitae sollicitudin dictum, odio lacus
+              faucibus justo, a mollis odio est vel est. Nam aliquam magna sit
+              amet quam convallis lacinia. Etiam quis purus euismod, convallis
+              sapien sed, feugiat mauris. Nullam vel massa sem. Nunc quis justo
+              arcu. Sed ac est a libero tincidunt blandit at ac dolor. Aliquam
+              sit amet orci nec quam dictum iaculis.
+            </li>
+            <li>
+              4. Sed eu odio lacinia, finibus sem a, mollis odio. Sed rhoncus
+              tristique nunc, ut bibendum tellus convallis vel. Morbi euismod in
+              elit ut dapibus. Sed quis metus justo. Pellentesque id metus ut
+              augue gravida elementum quis ut velit. Vivamus in feugiat mauris,
+              at vulputate quam. Donec non nisl eu nisi dapibus blandit. Ut sed
+              fringilla sapien, in blandit sapien. Phasellus ac enim augue. Sed
+              molestie dolor vitae risus pharetra aliquam.
+            </li>
+            <li>
+              5. Nunc ullamcorper lorem vel augue sagittis, vitae laoreet risus
+              pretium. Duis luctus mi vel sem pellentesque consectetur. Integer
+              id risus nisl. Nunc bibendum urna nec lacus ullamcorper, sit amet
+              tincidunt ex volutpat. Aliquam in massa urna. Nullam at nibh nec
+              tortor dignissim tincidunt. Nam euismod blandit quam. Donec quis
+              pretium eros. Quisque vel bibendum tellus. Aenean eget felis quam.
+              Sed posuere commodo commodo. Nulla facilisi. Sed varius nunc at
+              turpis malesuada, in commodo lorem bibendum. Ut pretium, ante vel
+              fermentum volutpat, mi enim dignissim lectus, at faucibus enim
+              sapien non massa. Cras eget lectus a magna facilisis sagittis.
+              Vivamus faucibus, lectus vitae imperdiet pharetra, nibh nibh
+              tristique nibh, id suscipit nisl elit ut ipsum.
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="section-title text-primary">TERMINATION AND REFUNDS</h2>
+          <ul class="md:pl-5 space-y-3">
+            <li>
+              1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
+              interdum mauris eget dolor malesuada, vitae hendrerit mi mattis.
+              Duis posuere nisi et commodo tempus. Aenean bibendum efficitur
+              ante, ut commodo elit mollis vitae. Fusce vitae mauris ut orci
+              consequat eleifend. Sed luctus id elit vitae rhoncus. Aliquam eu
+              odio sed lacus malesuada imperdiet. Nullam pharetra posuere
+              tellus, non efficitur dolor interdum non.
+            </li>
+            <li>
+              2. Praesent sit amet accumsan orci. Vestibulum ultricies augue in
+              leo efficitur, sed faucibus mi lacinia. Nullam bibendum congue
+              sem, sed commodo nulla rhoncus ut. Nullam ut dapibus quam, nec
+              laoreet mauris. Sed sed ante arcu. Praesent vestibulum diam ut
+              nibh ultrices, eu lobortis lorem porttitor. Praesent sollicitudin
+              urna ut libero elementum gravida. Sed ullamcorper ex vitae justo
+              pretium, eget semper velit facilisis. Sed in est nulla. Aenean
+              scelerisque eget urna eget iaculis.
+            </li>
+            <li>
+              3. Suspendisse quis risus neque. Nam id erat vel sapien pulvinar
+              ultricies. Integer elementum quam vel massa malesuada, vel finibus
+              ex consectetur. Donec vel enim id elit dapibus ornare eu at ante.
+              Sed imperdiet, felis vitae sollicitudin dictum, odio lacus
+              faucibus justo, a mollis odio est vel est. Nam aliquam magna sit
+              amet quam convallis lacinia. Etiam quis purus euismod, convallis
+              sapien sed, feugiat mauris. Nullam vel massa sem. Nunc quis justo
+              arcu. Sed ac est a libero tincidunt blandit at ac dolor. Aliquam
+              sit amet orci nec quam dictum iaculis.
+            </li>
+            <li>
+              4. Sed eu odio lacinia, finibus sem a, mollis odio. Sed rhoncus
+              tristique nunc, ut bibendum tellus convallis vel. Morbi euismod in
+              elit ut dapibus. Sed quis metus justo. Pellentesque id metus ut
+              augue gravida elementum quis ut velit. Vivamus in feugiat mauris,
+              at vulputate quam. Donec non nisl eu nisi dapibus blandit. Ut sed
+              fringilla sapien, in blandit sapien. Phasellus ac enim augue. Sed
+              molestie dolor vitae risus pharetra aliquam.
+            </li>
+            <li>
+              5. Nunc ullamcorper lorem vel augue sagittis, vitae laoreet risus
+              pretium. Duis luctus mi vel sem pellentesque consectetur. Integer
+              id risus nisl. Nunc bibendum urna nec lacus ullamcorper, sit amet
+              tincidunt ex volutpat. Aliquam in massa urna. Nullam at nibh nec
+              tortor dignissim tincidunt. Nam euismod blandit quam. Donec quis
+              pretium eros. Quisque vel bibendum tellus. Aenean eget felis quam.
+              Sed posuere commodo commodo. Nulla facilisi. Sed varius nunc at
+              turpis malesuada, in commodo lorem bibendum. Ut pretium, ante vel
+              fermentum volutpat, mi enim dignissim lectus, at faucibus enim
+              sapien non massa. Cras eget lectus a magna facilisis sagittis.
+              Vivamus faucibus, lectus vitae imperdiet pharetra, nibh nibh
+              tristique nibh, id suscipit nisl elit ut ipsum.
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="section-title text-primary">
+            LIABILITY, EXCLUSION AND LIMITATIONS
+          </h2>
+          <ul class="md:pl-5 space-y-3">
+            <li>
+              1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
+              interdum mauris eget dolor malesuada, vitae hendrerit mi mattis.
+              Duis posuere nisi et commodo tempus. Aenean bibendum efficitur
+              ante, ut commodo elit mollis vitae. Fusce vitae mauris ut orci
+              consequat eleifend. Sed luctus id elit vitae rhoncus. Aliquam eu
+              odio sed lacus malesuada imperdiet. Nullam pharetra posuere
+              tellus, non efficitur dolor interdum non.
+            </li>
+            <li>
+              2. Praesent sit amet accumsan orci. Vestibulum ultricies augue in
+              leo efficitur, sed faucibus mi lacinia. Nullam bibendum congue
+              sem, sed commodo nulla rhoncus ut. Nullam ut dapibus quam, nec
+              laoreet mauris. Sed sed ante arcu. Praesent vestibulum diam ut
+              nibh ultrices, eu lobortis lorem porttitor. Praesent sollicitudin
+              urna ut libero elementum gravida. Sed ullamcorper ex vitae justo
+              pretium, eget semper velit facilisis. Sed in est nulla. Aenean
+              scelerisque eget urna eget iaculis.
+            </li>
+            <li>
+              3. Suspendisse quis risus neque. Nam id erat vel sapien pulvinar
+              ultricies. Integer elementum quam vel massa malesuada, vel finibus
+              ex consectetur. Donec vel enim id elit dapibus ornare eu at ante.
+              Sed imperdiet, felis vitae sollicitudin dictum, odio lacus
+              faucibus justo, a mollis odio est vel est. Nam aliquam magna sit
+              amet quam convallis lacinia. Etiam quis purus euismod, convallis
+              sapien sed, feugiat mauris. Nullam vel massa sem. Nunc quis justo
+              arcu. Sed ac est a libero tincidunt blandit at ac dolor. Aliquam
+              sit amet orci nec quam dictum iaculis.
+            </li>
+            <li>
+              4. Sed eu odio lacinia, finibus sem a, mollis odio. Sed rhoncus
+              tristique nunc, ut bibendum tellus convallis vel. Morbi euismod in
+              elit ut dapibus. Sed quis metus justo. Pellentesque id metus ut
+              augue gravida elementum quis ut velit. Vivamus in feugiat mauris,
+              at vulputate quam. Donec non nisl eu nisi dapibus blandit. Ut sed
+              fringilla sapien, in blandit sapien. Phasellus ac enim augue. Sed
+              molestie dolor vitae risus pharetra aliquam.
+            </li>
+            <li>
+              5. Nunc ullamcorper lorem vel augue sagittis, vitae laoreet risus
+              pretium. Duis luctus mi vel sem pellentesque consectetur. Integer
+              id risus nisl. Nunc bibendum urna nec lacus ullamcorper, sit amet
+              tincidunt ex volutpat. Aliquam in massa urna. Nullam at nibh nec
+              tortor dignissim tincidunt. Nam euismod blandit quam. Donec quis
+              pretium eros. Quisque vel bibendum tellus. Aenean eget felis quam.
+              Sed posuere commodo commodo. Nulla facilisi. Sed varius nunc at
+              turpis malesuada, in commodo lorem bibendum. Ut pretium, ante vel
+              fermentum volutpat, mi enim dignissim lectus, at faucibus enim
+              sapien non massa. Cras eget lectus a magna facilisis sagittis.
+              Vivamus faucibus, lectus vitae imperdiet pharetra, nibh nibh
+              tristique nibh, id suscipit nisl elit ut ipsum.
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="section-title text-primary">DISCLOSURE OF INFORMATION</h2>
+          <ul class="md:pl-5 space-y-3">
+            <li>
+              1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
+              interdum mauris eget dolor malesuada, vitae hendrerit mi mattis.
+              Duis posuere nisi et commodo tempus. Aenean bibendum efficitur
+              ante, ut commodo elit mollis vitae. Fusce vitae mauris ut orci
+              consequat eleifend. Sed luctus id elit vitae rhoncus. Aliquam eu
+              odio sed lacus malesuada imperdiet. Nullam pharetra posuere
+              tellus, non efficitur dolor interdum non.
+            </li>
+            <li>
+              2. Praesent sit amet accumsan orci. Vestibulum ultricies augue in
+              leo efficitur, sed faucibus mi lacinia. Nullam bibendum congue
+              sem, sed commodo nulla rhoncus ut. Nullam ut dapibus quam, nec
+              laoreet mauris. Sed sed ante arcu. Praesent vestibulum diam ut
+              nibh ultrices, eu lobortis lorem porttitor. Praesent sollicitudin
+              urna ut libero elementum gravida. Sed ullamcorper ex vitae justo
+              pretium, eget semper velit facilisis. Sed in est nulla. Aenean
+              scelerisque eget urna eget iaculis.
+            </li>
+            <li>
+              3. Suspendisse quis risus neque. Nam id erat vel sapien pulvinar
+              ultricies. Integer elementum quam vel massa malesuada, vel finibus
+              ex consectetur. Donec vel enim id elit dapibus ornare eu at ante.
+              Sed imperdiet, felis vitae sollicitudin dictum, odio lacus
+              faucibus justo, a mollis odio est vel est. Nam aliquam magna sit
+              amet quam convallis lacinia. Etiam quis purus euismod, convallis
+              sapien sed, feugiat mauris. Nullam vel massa sem. Nunc quis justo
+              arcu. Sed ac est a libero tincidunt blandit at ac dolor. Aliquam
+              sit amet orci nec quam dictum iaculis.
+            </li>
+            <li>
+              4. Sed eu odio lacinia, finibus sem a, mollis odio. Sed rhoncus
+              tristique nunc, ut bibendum tellus convallis vel. Morbi euismod in
+              elit ut dapibus. Sed quis metus justo. Pellentesque id metus ut
+              augue gravida elementum quis ut velit. Vivamus in feugiat mauris,
+              at vulputate quam. Donec non nisl eu nisi dapibus blandit. Ut sed
+              fringilla sapien, in blandit sapien. Phasellus ac enim augue. Sed
+              molestie dolor vitae risus pharetra aliquam.
+            </li>
+            <li>
+              5. Nunc ullamcorper lorem vel augue sagittis, vitae laoreet risus
+              pretium. Duis luctus mi vel sem pellentesque consectetur. Integer
+              id risus nisl. Nunc bibendum urna nec lacus ullamcorper, sit amet
+              tincidunt ex volutpat. Aliquam in massa urna. Nullam at nibh nec
+              tortor dignissim tincidunt. Nam euismod blandit quam. Donec quis
+              pretium eros. Quisque vel bibendum tellus. Aenean eget felis quam.
+              Sed posuere commodo commodo. Nulla facilisi. Sed varius nunc at
+              turpis malesuada, in commodo lorem bibendum. Ut pretium, ante vel
+              fermentum volutpat, mi enim dignissim lectus, at faucibus enim
+              sapien non massa. Cras eget lectus a magna facilisis sagittis.
+              Vivamus faucibus, lectus vitae imperdiet pharetra, nibh nibh
+              tristique nibh, id suscipit nisl elit ut ipsum.
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="section-title text-primary">AMENDMENTS</h2>
+          <ul class="md:pl-5 space-y-3">
+            <li>
+              1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
+              interdum mauris eget dolor malesuada, vitae hendrerit mi mattis.
+              Duis posuere nisi et commodo tempus. Aenean bibendum efficitur
+              ante, ut commodo elit mollis vitae. Fusce vitae mauris ut orci
+              consequat eleifend. Sed luctus id elit vitae rhoncus. Aliquam eu
+              odio sed lacus malesuada imperdiet. Nullam pharetra posuere
+              tellus, non efficitur dolor interdum non.
+            </li>
+            <li>
+              2. Praesent sit amet accumsan orci. Vestibulum ultricies augue in
+              leo efficitur, sed faucibus mi lacinia. Nullam bibendum congue
+              sem, sed commodo nulla rhoncus ut. Nullam ut dapibus quam, nec
+              laoreet mauris. Sed sed ante arcu. Praesent vestibulum diam ut
+              nibh ultrices, eu lobortis lorem porttitor. Praesent sollicitudin
+              urna ut libero elementum gravida. Sed ullamcorper ex vitae justo
+              pretium, eget semper velit facilisis. Sed in est nulla. Aenean
+              scelerisque eget urna eget iaculis.
+            </li>
+            <li>
+              3. Suspendisse quis risus neque. Nam id erat vel sapien pulvinar
+              ultricies. Integer elementum quam vel massa malesuada, vel finibus
+              ex consectetur. Donec vel enim id elit dapibus ornare eu at ante.
+              Sed imperdiet, felis vitae sollicitudin dictum, odio lacus
+              faucibus justo, a mollis odio est vel est. Nam aliquam magna sit
+              amet quam convallis lacinia. Etiam quis purus euismod, convallis
+              sapien sed, feugiat mauris. Nullam vel massa sem. Nunc quis justo
+              arcu. Sed ac est a libero tincidunt blandit at ac dolor. Aliquam
+              sit amet orci nec quam dictum iaculis.
+            </li>
+            <li>
+              4. Sed eu odio lacinia, finibus sem a, mollis odio. Sed rhoncus
+              tristique nunc, ut bibendum tellus convallis vel. Morbi euismod in
+              elit ut dapibus. Sed quis metus justo. Pellentesque id metus ut
+              augue gravida elementum quis ut velit. Vivamus in feugiat mauris,
+              at vulputate quam. Donec non nisl eu nisi dapibus blandit. Ut sed
+              fringilla sapien, in blandit sapien. Phasellus ac enim augue. Sed
+              molestie dolor vitae risus pharetra aliquam.
+            </li>
+            <li>
+              5. Nunc ullamcorper lorem vel augue sagittis, vitae laoreet risus
+              pretium. Duis luctus mi vel sem pellentesque consectetur. Integer
+              id risus nisl. Nunc bibendum urna nec lacus ullamcorper, sit amet
+              tincidunt ex volutpat. Aliquam in massa urna. Nullam at nibh nec
+              tortor dignissim tincidunt. Nam euismod blandit quam. Donec quis
+              pretium eros. Quisque vel bibendum tellus. Aenean eget felis quam.
+              Sed posuere commodo commodo. Nulla facilisi. Sed varius nunc at
+              turpis malesuada, in commodo lorem bibendum. Ut pretium, ante vel
+              fermentum volutpat, mi enim dignissim lectus, at faucibus enim
+              sapien non massa. Cras eget lectus a magna facilisis sagittis.
+              Vivamus faucibus, lectus vitae imperdiet pharetra, nibh nibh
+              tristique nibh, id suscipit nisl elit ut ipsum.
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="section-title text-primary">SEVERABILITY</h2>
+          <ul class="md:pl-5 space-y-3">
+            <li>
+              1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
+              interdum mauris eget dolor malesuada, vitae hendrerit mi mattis.
+              Duis posuere nisi et commodo tempus. Aenean bibendum efficitur
+              ante, ut commodo elit mollis vitae. Fusce vitae mauris ut orci
+              consequat eleifend. Sed luctus id elit vitae rhoncus. Aliquam eu
+              odio sed lacus malesuada imperdiet. Nullam pharetra posuere
+              tellus, non efficitur dolor interdum non.
+            </li>
+            <li>
+              2. Praesent sit amet accumsan orci. Vestibulum ultricies augue in
+              leo efficitur, sed faucibus mi lacinia. Nullam bibendum congue
+              sem, sed commodo nulla rhoncus ut. Nullam ut dapibus quam, nec
+              laoreet mauris. Sed sed ante arcu. Praesent vestibulum diam ut
+              nibh ultrices, eu lobortis lorem porttitor. Praesent sollicitudin
+              urna ut libero elementum gravida. Sed ullamcorper ex vitae justo
+              pretium, eget semper velit facilisis. Sed in est nulla. Aenean
+              scelerisque eget urna eget iaculis.
+            </li>
+            <li>
+              3. Suspendisse quis risus neque. Nam id erat vel sapien pulvinar
+              ultricies. Integer elementum quam vel massa malesuada, vel finibus
+              ex consectetur. Donec vel enim id elit dapibus ornare eu at ante.
+              Sed imperdiet, felis vitae sollicitudin dictum, odio lacus
+              faucibus justo, a mollis odio est vel est. Nam aliquam magna sit
+              amet quam convallis lacinia. Etiam quis purus euismod, convallis
+              sapien sed, feugiat mauris. Nullam vel massa sem. Nunc quis justo
+              arcu. Sed ac est a libero tincidunt blandit at ac dolor. Aliquam
+              sit amet orci nec quam dictum iaculis.
+            </li>
+            <li>
+              4. Sed eu odio lacinia, finibus sem a, mollis odio. Sed rhoncus
+              tristique nunc, ut bibendum tellus convallis vel. Morbi euismod in
+              elit ut dapibus. Sed quis metus justo. Pellentesque id metus ut
+              augue gravida elementum quis ut velit. Vivamus in feugiat mauris,
+              at vulputate quam. Donec non nisl eu nisi dapibus blandit. Ut sed
+              fringilla sapien, in blandit sapien. Phasellus ac enim augue. Sed
+              molestie dolor vitae risus pharetra aliquam.
+            </li>
+            <li>
+              5. Nunc ullamcorper lorem vel augue sagittis, vitae laoreet risus
+              pretium. Duis luctus mi vel sem pellentesque consectetur. Integer
+              id risus nisl. Nunc bibendum urna nec lacus ullamcorper, sit amet
+              tincidunt ex volutpat. Aliquam in massa urna. Nullam at nibh nec
+              tortor dignissim tincidunt. Nam euismod blandit quam. Donec quis
+              pretium eros. Quisque vel bibendum tellus. Aenean eget felis quam.
+              Sed posuere commodo commodo. Nulla facilisi. Sed varius nunc at
+              turpis malesuada, in commodo lorem bibendum. Ut pretium, ante vel
+              fermentum volutpat, mi enim dignissim lectus, at faucibus enim
+              sapien non massa. Cras eget lectus a magna facilisis sagittis.
+              Vivamus faucibus, lectus vitae imperdiet pharetra, nibh nibh
+              tristique nibh, id suscipit nisl elit ut ipsum.
+            </li>
+          </ul>
+        </section>
+
+        <section class="space-y-3">
+          <h2 class="section-title text-primary">AMENDMENTS</h2>
+          <ul class="md:pl-5 space-y-3">
+            <li>
+              1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
+              interdum mauris eget dolor malesuada, vitae hendrerit mi mattis.
+              Duis posuere nisi et commodo tempus. Aenean bibendum efficitur
+              ante, ut commodo elit mollis vitae. Fusce vitae mauris ut orci
+              consequat eleifend. Sed luctus id elit vitae rhoncus. Aliquam eu
+              odio sed lacus malesuada imperdiet. Nullam pharetra posuere
+              tellus, non efficitur dolor interdum non.
+            </li>
+            <li>
+              2. Praesent sit amet accumsan orci. Vestibulum ultricies augue in
+              leo efficitur, sed faucibus mi lacinia. Nullam bibendum congue
+              sem, sed commodo nulla rhoncus ut. Nullam ut dapibus quam, nec
+              laoreet mauris. Sed sed ante arcu. Praesent vestibulum diam ut
+              nibh ultrices, eu lobortis lorem porttitor. Praesent sollicitudin
+              urna ut libero elementum gravida. Sed ullamcorper ex vitae justo
+              pretium, eget semper velit facilisis. Sed in est nulla. Aenean
+              scelerisque eget urna eget iaculis.
+            </li>
+            <li>
+              3. Suspendisse quis risus neque. Nam id erat vel sapien pulvinar
+              ultricies. Integer elementum quam vel massa malesuada, vel finibus
+              ex consectetur. Donec vel enim id elit dapibus ornare eu at ante.
+              Sed imperdiet, felis vitae sollicitudin dictum, odio lacus
+              faucibus justo, a mollis odio est vel est. Nam aliquam magna sit
+              amet quam convallis lacinia. Etiam quis purus euismod, convallis
+              sapien sed, feugiat mauris. Nullam vel massa sem. Nunc quis justo
+              arcu. Sed ac est a libero tincidunt blandit at ac dolor. Aliquam
+              sit amet orci nec quam dictum iaculis.
+            </li>
+            <li>
+              4. Sed eu odio lacinia, finibus sem a, mollis odio. Sed rhoncus
+              tristique nunc, ut bibendum tellus convallis vel. Morbi euismod in
+              elit ut dapibus. Sed quis metus justo. Pellentesque id metus ut
+              augue gravida elementum quis ut velit. Vivamus in feugiat mauris,
+              at vulputate quam. Donec non nisl eu nisi dapibus blandit. Ut sed
+              fringilla sapien, in blandit sapien. Phasellus ac enim augue. Sed
+              molestie dolor vitae risus pharetra aliquam.
+            </li>
+            <li>
+              5. Nunc ullamcorper lorem vel augue sagittis, vitae laoreet risus
+              pretium. Duis luctus mi vel sem pellentesque consectetur. Integer
+              id risus nisl. Nunc bibendum urna nec lacus ullamcorper, sit amet
+              tincidunt ex volutpat. Aliquam in massa urna. Nullam at nibh nec
+              tortor dignissim tincidunt. Nam euismod blandit quam. Donec quis
+              pretium eros. Quisque vel bibendum tellus. Aenean eget felis quam.
+              Sed posuere commodo commodo. Nulla facilisi. Sed varius nunc at
+              turpis malesuada, in commodo lorem bibendum. Ut pretium, ante vel
+              fermentum volutpat, mi enim dignissim lectus, at faucibus enim
+              sapien non massa. Cras eget lectus a magna facilisis sagittis.
+              Vivamus faucibus, lectus vitae imperdiet pharetra, nibh nibh
+              tristique nibh, id suscipit nisl elit ut ipsum.
+            </li>
+          </ul>
+        </section>
+      </section>
+    </section>
+
+    <!-- cta -->
+    <section class="mt-20 opacity-2 to-blue-[#5368F8]">
+      <div
+        class="p-4 pt-16 max-w-screen-2xl mx-auto flex justify-center flex-col"
+      >
+        <div
+          class="px-6 md:px-0 flex items-center justify-center md:justify-around"
+        >
+          <div class="img-div hidden md:block w-[50%]">
+            <img src="images/asset-3.png" class="w-full" alt="" />
+          </div>
+          <div class="text-div w-full md:w-[35%]">
+            <h1 class="font-bold text-2xl md:text-4xl text-gray-800">
+              Try SuperFollow for free on iOS and Android
+            </h1>
+            <!-- {/* Buttons */} -->
+            <div
+              class="download-btn flex flex-col md:flex-row gap-y-4 justify-start items-center gap-x-4 mt-4 text-secondary"
+            >
+              <a href="#">
+                <img src="/images/google-play.svg" alt="" class="w-32 h-auto" />
+              </a>
+
+              <a href="#">
+                <img src="/images/apple-store.svg" alt="" class="w-32 h-auto" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- footer -->
+    <footer class="opacity-2 to-blue-[#5368F8] mb-4">
+      <div
+        class="md:px-12 p-4 pb-16 max-w-screen-2xl mx-auto flex justify-center flex-col"
+      >
+        <div
+          class="md:flex md:gap-x-4 justify-between items-start py-6 border-b border-gray-200"
+        >
+          <div class="w-full md:w-2/5 text-wrap mb-4 md:mb-0">
+            <div class="logo bg-gray-950 h-12 w-28 mb-4"></div>
+            <p>
+              SuperFollow is a mobile app designed to boost social media
+              engagement by providing users with real likes, followers, and
+              views. It offers personalized growth strategies and exclusive
+              features to enhance your online presence.
+            </p>
+          </div>
+
+          <div class="w-full md:w-1/5 mb-4">
+            <div class="link-title">
+              <h1 class="font-bold text-lg text-gray-800 mb-4">Quick Link</h1>
+              <ul class="text-sm flex flex-col gap-y-2">
+                <li>Home</li>
+                <li>Privacy Policy</li>
+                <li>Terms and Condition</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="w-full md:w-1/5 text-wrap mb-4">
+            <div class="link-title">
+              <h1 class="font-bold text-lg text-gray-800 mb-4">Contacts</h1>
+              <p class="text-sm">Become an agent</p>
+              <p class="text-sm">
+                <span class="font-bold">Address:</span> Opposite Bomas, Minna
+                Niger State
+              </p>
+              <p class="text-sm">
+                <span class="font-bold">Phone:</span> (+234) 014 549 130
+              </p>
+              <p class="text-sm">
+                <span class="font-bold">Mail:</span> help@mySuperFollow.com
+              </p>
+            </div>
+          </div>
+
+          <div class="w-full md:w-1/5">
+            <div class="link-title flex flex-col items-start justify-start">
+              <h1 class="font-bold text-lg text-gray-800">Get the App</h1>
+              <div
+                class="download-btn flex flex-col justify-start items-center gap-y-4 mt-4 text-secondary"
+              >
+                <!-- <div
+                  class="flex justify-between items-center gap-x-2 bg-primary p-1 px-3 rounded-lg w-full"
+                >
+                  <i class="fa-brands fa-google-play fa-2x"></i>
+                  <button class="flex flex-col gap-y-0 capitalize font-medium">
+                    <span class="text-xs uppercase font-normal">Get it on</span>
+                    Google Play
+                  </button>
+                </div> -->
+
+                <a href="#">
+                  <img
+                    src="/images/google-play.svg"
+                    alt=""
+                    class="w-32 h-auto"
+                  />
+                </a>
+
+                <a href="#">
+                  <img
+                    src="/images/apple-store.svg"
+                    alt=""
+                    class="w-32 h-auto"
+                  />
+                </a>
+
+                <!-- <div
+                  class="flex justify-between items-center gap-x-1 bg-primary p-1 px-3 rounded-lg w-full"
+                >
+                  <i class="fa-brands fa-apple fa-2x"></i>
+                  <button class="flex flex-col gap-y-0 capitalize font-medium">
+                    <span class="text-xs uppercase font-normal">Get it on</span>
+                    App Store
+                  </button>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="lower-footer mt-4 flex flex-col md:flex-row items-center justify-between text-xs"
+        >
+          <div class="copyright">
+            <p>© 2024 SuperFollow. All Rights Reserved</p>
+          </div>
+          <div class="icon-links flex items-center justify-between gap-x-4">
+            <a href="#">
+              <i class="fa-brands fa-instagram text-gray-800 text-xl"></i>
+            </a>
+            <a href="#">
+              <i class="fa-brands fa-linkedin-in text-[#0077B5] text-xl"></i>
+            </a>
+            <a href="#">
+              <i class="fa-brands fa-twitter text-[#55ACEE] text-xl"></i>
+            </a>
+            <a href="#">
+              <i class="fa-brands fa-youtube text-[#FF0000] text-xl"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/a875a20b85.js" crossorigin="anonymous"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>
